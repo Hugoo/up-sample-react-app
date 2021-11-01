@@ -2,7 +2,7 @@
   "name": "up-sample-react-app",
   "version": "0.1.0",
   "private": false,
-  "homepage": "./up-sample-react-app",
+  "homepage": "up-sample-react-app",
   "dependencies": {
     "@lukso/lsp-factory.js": "1.0.2-alpha.9",
     "react": "^17.0.2",
