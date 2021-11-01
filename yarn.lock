@@ -1823,15 +1823,15 @@
     "@types/yargs" "^16.0.0"
     chalk "^4.0.0"
 
-"@lukso/lsp-factory.js@1.0.2-alpha.7":
-  version "1.0.2-alpha.7"
-  resolved "https://registry.yarnpkg.com/@lukso/lsp-factory.js/-/lsp-factory.js-1.0.2-alpha.7.tgz#3a66b01e48bf639bf82e0a41e4769f70757f722f"
-  integrity sha512-4fyKlDmOrXbQroaZnn+Hz1vlG8GE9esXLQoTDocgvMxhsOkobEhaFVdWmHVPftOfLs//GC1PxXr8kYvOKuSssw==
+"@lukso/lsp-factory.js@1.0.2-alpha.9":
+  version "1.0.2-alpha.9"
+  resolved "https://registry.yarnpkg.com/@lukso/lsp-factory.js/-/lsp-factory.js-1.0.2-alpha.9.tgz#d89cde79099c33e6abe2e6b1042ad38e0f503188"
+  integrity sha512-zFC9zR93fX4uvu/XKB4YKjdCdUh6YIiI1+/MiF1PwYX2EV486RJ6Bvog4glAw5+fDTinYnRAa3DNwTnGKtCgeg==
   dependencies:
     "@erc725/erc725.js" "^0.6.2-beta.4"
     "@ethersproject/abi" "5.5.0"
     "@ethersproject/experimental" "5.5.0"
-    "@lukso/universalprofile-smart-contracts" "0.1.3"
+    "@lukso/universalprofile-smart-contracts" "0.2.2"
     "@typechain/web3-v1" "^3.1.0"
     axios "^0.23.0"
     browser-image-compression "^1.0.15"
@@ -1840,10 +1840,10 @@
     ipfs-utils "8.1.6"
     rxjs "^7.3.0"
 
-"@lukso/universalprofile-smart-contracts@0.1.3":
-  version "0.1.3"
-  resolved "https://registry.yarnpkg.com/@lukso/universalprofile-smart-contracts/-/universalprofile-smart-contracts-0.1.3.tgz#0ae8c430160122b5d5a89cc57b8998b9ad76d335"
-  integrity sha512-VYuKrxDZCAxP9oRxagDyqRzwP7EmvEzPNDtJhxJUKhu0CRDB0H4kmu18kL4HVHyC1HOvdqHl9UCZpgGYpNWqLg==
+"@lukso/universalprofile-smart-contracts@0.2.2":
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/@lukso/universalprofile-smart-contracts/-/universalprofile-smart-contracts-0.2.2.tgz#b60594b7e5b7c8fdcbf2049acf5ee14c3716a84e"
+  integrity sha512-FpaVJ1NYBrTJ3D1wFLdUFp8InGbebXTW2h7LtCtH4n5adxwYr/Xlxju06F1NAyYWBkFllh945JkZsEpXUB4pXg==
 
 "@nodelib/fs.scandir@2.1.4":
   version "2.1.4"
