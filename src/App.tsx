@@ -1,13 +1,18 @@
 import React from 'react';
-import './App.css';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+import Main from './pages/Main';
+
+// import your favorite web3 convenience library here
 
 const App: React.FC = () => {
   return (
-    <div>
-      <h1>UP Sample React App</h1>
-      <p>Let's deploy and interact with a UP. This is a sample repo for the <a href="https://docs.lukso.tech/tools/getting-started">Getting Started</a> tutorial</p>
-    </div>
+    <>
+      <Main />
+      <ToastContainer pauseOnFocusLoss newestOnTop autoClose={10000} />
+    </>
   );
-}
+};
 
 export default App;
