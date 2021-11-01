@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Confetti from 'react-confetti';
+import { toast } from 'react-toastify';
 
 import useWeb3 from '../../hooks/useWeb3';
 import { getAccount, getAccountBalance } from '../../services/blockchain';
@@ -54,7 +55,7 @@ const Main: React.FC = () => {
   return (
     <div>
       <Confetti run={isConfettiRunning} numberOfPieces={50} />
-      <h1>🆙 UP Sample React App</h1>
+      <h1>🆙 Sample React App</h1>
       <p>
         This is a sample repo for the{' '}
         <a
@@ -69,6 +70,15 @@ const Main: React.FC = () => {
         Let's deploy a Universal Profile, configure it and interact with it.
         <br />
         It is recommanded to open the developer console to check the logs.
+      </p>
+      <p>
+        <a
+          target="_blank"
+          rel="noreferrer"
+          href="https://github.com/Hugoo/up-sample-react-app"
+        >
+          GitHub
+        </a>
       </p>
       <h2>1. {accountAddress && '✅'} 🔑 Create/Get account</h2>
       {accountAddress ? (
@@ -126,7 +136,6 @@ const Main: React.FC = () => {
           </p>
         </>
       )}
-      <br />
       {step >= STEP.DEPLOY_UP && (
         <>
           <h2>
@@ -148,11 +157,18 @@ const Main: React.FC = () => {
           <button
             onClick={async () => {
               setIsDeployingUp(true);
-              const erc725ContractAddress = await deployUp(
-                web3,
-                accountAddress,
-              );
-              setErc725ContractAddress(erc725ContractAddress);
+              setErc725ContractAddress('');
+
+              try {
+                const erc725ContractAddress = await deployUp(
+                  web3,
+                  accountAddress,
+                );
+                setErc725ContractAddress(erc725ContractAddress);
+              } catch (err: any) {
+                console.error(err);
+                toast.error('There was an error, please check console logs.');
+              }
               setIsDeployingUp(false);
             }}
           >
@@ -162,14 +178,19 @@ const Main: React.FC = () => {
             onClick={async () => {
               setIsDeployingUp(true);
               setErc725ContractAddress('');
-              deployUpReactive(
-                web3,
-                accountAddress,
-                (erc725ContractAddress) => {
-                  setErc725ContractAddress(erc725ContractAddress);
-                  setIsDeployingUp(false);
-                },
-              );
+              try {
+                deployUpReactive(
+                  web3,
+                  accountAddress,
+                  (erc725ContractAddress) => {
+                    setErc725ContractAddress(erc725ContractAddress);
+                  },
+                );
+              } catch (err: any) {
+                console.error(err);
+                toast.error('There was an error, please check console logs.');
+              }
+              setIsDeployingUp(false);
             }}
           >
             Deploy LSP3 UP contract [reactive mode]
