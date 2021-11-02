@@ -3,15 +3,17 @@ import Confetti from 'react-confetti';
 import { toast } from 'react-toastify';
 
 import useWeb3 from '../../hooks/useWeb3';
-import { getAccount, getAccountBalance } from '../../services/blockchain';
+import { getAccount, getAccountBalance } from '../../services/web3';
 import { fetchErc725Data } from '../../services/erc725';
 import { deployUp, deployUpReactive } from '../../services/lspFactory';
+import { executeTransaction } from '../../services/blockchain';
 
 enum STEP {
   CREATE_ACCOUNT,
   FUND_ACCOUNT,
   DEPLOY_UP,
   FETCH_DATA,
+  INTERACT_WITH_CONTRACT,
   DONE,
 }
 
@@ -184,13 +186,14 @@ const Main: React.FC = () => {
                   accountAddress,
                   (erc725ContractAddress) => {
                     setErc725ContractAddress(erc725ContractAddress);
+                    setIsDeployingUp(false);
                   },
                 );
               } catch (err: any) {
                 console.error(err);
                 toast.error('There was an error, please check console logs.');
+                setIsDeployingUp(false);
               }
-              setIsDeployingUp(false);
             }}
           >
             Deploy LSP3 UP contract [reactive mode]
@@ -262,8 +265,8 @@ const Main: React.FC = () => {
             onClick={async () => {
               const data = await fetchErc725Data(erc725ContractAddress);
               setErc725Data(data);
-              if (data !== {}) {
-                setStep(STEP.DONE);
+              if (data !== {} && step !== STEP.DONE) {
+                setStep(STEP.INTERACT_WITH_CONTRACT);
               }
             }}
           >
@@ -271,6 +274,36 @@ const Main: React.FC = () => {
           </button>
           {Object.keys(erc725Data).length > 0 && (
             <pre>{JSON.stringify(erc725Data, null, 2)}</pre>
+          )}
+        </>
+      )}
+      {step >= STEP.INTERACT_WITH_CONTRACT && (
+        <>
+          <h2>5. {step === STEP.DONE && '✅'} 🧙 Interact with contract</h2>
+          <p>
+            <a
+              href="https://www.npmjs.com/package/@lukso/universalprofile-smart-contracts"
+              target="_blank"
+              rel="noreferrer"
+            >
+              universalprofile-smart-contracts
+            </a>{' '}
+            lets you use the LUKSO's smart contract ABIs.
+          </p>
+          <button
+            onClick={async () => {
+              await executeTransaction(web3, erc725ContractAddress);
+
+              setStep(STEP.DONE);
+            }}
+          >
+            Execute a transaction
+          </button>
+          {step === STEP.DONE && (
+            <p>
+              The contract data have been updated, you can refresh the data
+              again at the previous step to see updated data.
+            </p>
           )}
         </>
       )}

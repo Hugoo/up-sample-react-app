@@ -1,35 +1,37 @@
 import Web3 from 'web3';
 
-export const getAccountBalance = async (web3: Web3, account) => {
-  return parseFloat(web3.utils.fromWei(await web3.eth.getBalance(account)));
-};
+import UniversalProfile from '@lukso/universalprofile-smart-contracts/build/artifacts/UniversalProfile.json';
+import KeyManager from '@lukso/universalprofile-smart-contracts/build/artifacts/KeyManager.json';
 
-export const getAccount = async (web3: Web3) => {
-  const myDummyPassword = 'mypassword';
+export const executeTransaction = async (web3: Web3, erc725Address: string) => {
+  const myUP = new web3.eth.Contract(
+    UniversalProfile.abi as any,
+    erc725Address,
+  );
 
-  // Here we try to load an already created key from the localstorage
-  web3.eth.accounts.wallet.load(myDummyPassword);
+  const keyManagerAddress = await myUP.methods.owner().call();
 
-  // If none exists we create a new key
-  if (!web3.eth.accounts.wallet.length) {
-    console.log('No account detected, generating and saving a new account...');
-    web3.eth.accounts.wallet.create(1);
-    web3.eth.accounts.wallet.save(myDummyPassword);
+  console.log('UP owner address (KeyManager SC):', keyManagerAddress);
 
-    // Then we log the address and send test LYX from the L14 faucet here: http://faucet.l14.lukso.network
-    console.log('My new key address ', web3.eth.accounts.wallet[0].address);
+  // call the execute function on your UP (operation, to, value, calldata)
+  const myKeyManager = new web3.eth.Contract(
+    KeyManager.abi as any,
+    keyManagerAddress,
+  );
 
-    // If we already have a key created we display it, with its current balance
-  } else {
-    const myKeyAddress = web3.eth.accounts.wallet[0].address;
+  const abi = myUP.methods
+    .setData(
+      ['0x5ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5'], // LSP3Profile
+      [
+        '0x6f357c6ad6c04598b25d41b96fb88a8c8ec4f4c3de2dc9bdaab7e71f40ed012b84d0c126697066733a2f2f516d6262447348577a4d4d724538594345766e3342633254706756793176535736414d3946376168595642573874',
+      ],
+    )
+    .encodeABI();
 
-    console.log('Loaded existing key address ', myKeyAddress);
-    console.log(
-      'Balance ',
-      web3.utils.fromWei(await web3.eth.getBalance(myKeyAddress), 'ether'),
-      'LYXt',
-    );
-  }
-
-  return web3.eth.accounts.wallet[0].address;
+  // send your tx to the blockchain, from the controlling key address, through the key manager
+  await myKeyManager.methods.execute(abi).send({
+    from: web3.eth.accounts.wallet[0].address,
+    gas: 200_000,
+    gasPrice: web3.utils.toWei('20', 'gwei'),
+  });
 };

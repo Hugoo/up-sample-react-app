@@ -38,8 +38,9 @@ export const deployUp = async (web3: Web3, controllerAddress: string) => {
   });
 
   console.log(`✅ Deployment and configuration successful`);
+  console.log('Contracts:', deployedContracts);
 
-  return deployedContracts.LSP3Account.address;
+  return deployedContracts.ERC725Account.address;
 };
 
 export const deployUpReactive = async (
@@ -99,7 +100,7 @@ export const deployUpReactive = async (
       if (
         deploymentEvent.type === DeploymentType.PROXY &&
         deploymentEvent.status === DeploymentStatus.PENDING &&
-        deploymentEvent.contractName === 'LSP3Account' &&
+        deploymentEvent.contractName === 'ERC725Account' &&
         deploymentEvent.receipt
       ) {
         erc725ContractAddress = deploymentEvent.receipt.contractAddress;
