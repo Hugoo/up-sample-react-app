@@ -1823,10 +1823,10 @@
     "@types/yargs" "^16.0.0"
     chalk "^4.0.0"
 
-"@lukso/lsp-factory.js@1.0.2-alpha.9":
-  version "1.0.2-alpha.9"
-  resolved "https://registry.yarnpkg.com/@lukso/lsp-factory.js/-/lsp-factory.js-1.0.2-alpha.9.tgz#d89cde79099c33e6abe2e6b1042ad38e0f503188"
-  integrity sha512-zFC9zR93fX4uvu/XKB4YKjdCdUh6YIiI1+/MiF1PwYX2EV486RJ6Bvog4glAw5+fDTinYnRAa3DNwTnGKtCgeg==
+"@lukso/lsp-factory.js@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@lukso/lsp-factory.js/-/lsp-factory.js-1.1.1.tgz#80492ccbfe61f113b26b8825eb6e3b7e937dc7ab"
+  integrity sha512-KIoC4u464IkEr5z/azqT2nO64c8VUMGvf1ROltnLSOdoHStg587cZkJQCC9ZwN66wp6xMm19j/HOgVyaZkDa1A==
   dependencies:
     "@erc725/erc725.js" "^0.6.2-beta.4"
     "@ethersproject/abi" "5.5.0"
@@ -1840,7 +1840,7 @@
     ipfs-utils "8.1.6"
     rxjs "^7.3.0"
 
-"@lukso/universalprofile-smart-contracts@0.2.2":
+"@lukso/universalprofile-smart-contracts@0.2.2", "@lukso/universalprofile-smart-contracts@^0.2.2":
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/@lukso/universalprofile-smart-contracts/-/universalprofile-smart-contracts-0.2.2.tgz#b60594b7e5b7c8fdcbf2049acf5ee14c3716a84e"
   integrity sha512-FpaVJ1NYBrTJ3D1wFLdUFp8InGbebXTW2h7LtCtH4n5adxwYr/Xlxju06F1NAyYWBkFllh945JkZsEpXUB4pXg==
