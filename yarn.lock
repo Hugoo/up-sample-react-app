@@ -1169,6 +1169,14 @@
     web3-eth-abi "^1.5.2"
     web3-utils "^1.5.2"
 
+"@erc725/erc725.js@^0.7.0":
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/@erc725/erc725.js/-/erc725.js-0.7.0.tgz#a21f251d402f055e2c70812b0281346fd15890cc"
+  integrity sha512-wFEejDkrVsb6WXxY2qr6SwLGWAmdjZCjkNQVtdEJWHy7aB1mQllRTFjmjI+Q+VgpxyAVsEu6GrJcL8KZJNh72A==
+  dependencies:
+    web3-eth-abi "^1.5.2"
+    web3-utils "^1.5.2"
+
 "@eslint/eslintrc@^0.3.0":
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/@eslint/eslintrc/-/eslintrc-0.3.0.tgz#d736d6963d7003b6514e6324bec9c602ac340318"
@@ -1823,10 +1831,10 @@
     "@types/yargs" "^16.0.0"
     chalk "^4.0.0"
 
-"@lukso/lsp-factory.js@^1.1.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@lukso/lsp-factory.js/-/lsp-factory.js-1.1.1.tgz#80492ccbfe61f113b26b8825eb6e3b7e937dc7ab"
-  integrity sha512-KIoC4u464IkEr5z/azqT2nO64c8VUMGvf1ROltnLSOdoHStg587cZkJQCC9ZwN66wp6xMm19j/HOgVyaZkDa1A==
+"@lukso/lsp-factory.js@^1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@lukso/lsp-factory.js/-/lsp-factory.js-1.1.2.tgz#88516a8ce31237856d6839b5428aeffa71ddcff6"
+  integrity sha512-1rxGMupmCGvxRc1dLwfRub1nWlimpIHjfuoWdY9Oq6p6HhQzW2aUZUYZDOXTeijh0lB2Av8qGxh22i+D/H0cBA==
   dependencies:
     "@erc725/erc725.js" "^0.6.2-beta.4"
     "@ethersproject/abi" "5.5.0"

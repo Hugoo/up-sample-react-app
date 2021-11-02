@@ -4,7 +4,8 @@
   "private": false,
   "homepage": "up-sample-react-app",
   "dependencies": {
-    "@lukso/lsp-factory.js": "^1.1.1",
+    "@erc725/erc725.js": "^0.7.0",
+    "@lukso/lsp-factory.js": "^1.1.2",
     "@lukso/universalprofile-smart-contracts": "^0.2.2",
     "react": "^17.0.2",
     "react-confetti": "^6.0.1",
