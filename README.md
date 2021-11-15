@@ -8,6 +8,7 @@ It is built on top of:
 
 - [`lsp-factory.js`](https://docs.lukso.tech/tools/lsp-factoryjs/getting-started) to deploy and configure contracts
 - [`erc725.js`](https://docs.lukso.tech/tools/erc725js/getting-started) to read/fetch/decode ERC725 and LSP data
+- [`lsp-universalprofile-smart-contracts`](https://github.com/lukso-network/lsp-universalprofile-smart-contracts) to get smart contracts ABI
 
 You can find the tutorial [here](https://docs.lukso.tech/tools/getting-started).
 
