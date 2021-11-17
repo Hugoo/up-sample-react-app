@@ -40,7 +40,7 @@ export const deployUp = async (web3: Web3, controllerAddress: string) => {
   console.log(`✅ Deployment and configuration successful`);
   console.log('Contracts:', deployedContracts);
 
-  return deployedContracts.ERC725Account.address;
+  return deployedContracts.ERC725Account?.address;
 };
 
 export const deployUpReactive = async (

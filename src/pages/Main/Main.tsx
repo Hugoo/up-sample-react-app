@@ -166,7 +166,9 @@ const Main: React.FC = () => {
                   web3,
                   accountAddress,
                 );
-                setErc725ContractAddress(erc725ContractAddress);
+                if (erc725ContractAddress) {
+                  setErc725ContractAddress(erc725ContractAddress);
+                }
               } catch (err: any) {
                 console.error(err);
                 toast.error('There was an error, please check console logs.');
