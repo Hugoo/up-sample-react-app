@@ -1,23 +1,23 @@
 {
   "files": {
     "main.css": "/up-sample-react-app/static/css/main.127c90ff.chunk.css",
-    "main.js": "/up-sample-react-app/static/js/main.32098d1b.chunk.js",
-    "main.js.map": "/up-sample-react-app/static/js/main.32098d1b.chunk.js.map",
+    "main.js": "/up-sample-react-app/static/js/main.149b8338.chunk.js",
+    "main.js.map": "/up-sample-react-app/static/js/main.149b8338.chunk.js.map",
     "runtime-main.js": "/up-sample-react-app/static/js/runtime-main.96153ff9.js",
     "runtime-main.js.map": "/up-sample-react-app/static/js/runtime-main.96153ff9.js.map",
     "static/css/2.58a45539.chunk.css": "/up-sample-react-app/static/css/2.58a45539.chunk.css",
-    "static/js/2.d87e6942.chunk.js": "/up-sample-react-app/static/js/2.d87e6942.chunk.js",
-    "static/js/2.d87e6942.chunk.js.map": "/up-sample-react-app/static/js/2.d87e6942.chunk.js.map",
+    "static/js/2.4557c1a6.chunk.js": "/up-sample-react-app/static/js/2.4557c1a6.chunk.js",
+    "static/js/2.4557c1a6.chunk.js.map": "/up-sample-react-app/static/js/2.4557c1a6.chunk.js.map",
     "index.html": "/up-sample-react-app/index.html",
     "static/css/2.58a45539.chunk.css.map": "/up-sample-react-app/static/css/2.58a45539.chunk.css.map",
     "static/css/main.127c90ff.chunk.css.map": "/up-sample-react-app/static/css/main.127c90ff.chunk.css.map",
-    "static/js/2.d87e6942.chunk.js.LICENSE.txt": "/up-sample-react-app/static/js/2.d87e6942.chunk.js.LICENSE.txt"
+    "static/js/2.4557c1a6.chunk.js.LICENSE.txt": "/up-sample-react-app/static/js/2.4557c1a6.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.96153ff9.js",
     "static/css/2.58a45539.chunk.css",
-    "static/js/2.d87e6942.chunk.js",
+    "static/js/2.4557c1a6.chunk.js",
     "static/css/main.127c90ff.chunk.css",
-    "static/js/main.32098d1b.chunk.js"
+    "static/js/main.149b8338.chunk.js"
   ]
 }
