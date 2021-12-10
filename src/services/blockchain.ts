@@ -1,7 +1,7 @@
 import Web3 from 'web3';
 
-import UniversalProfile from '@lukso/universalprofile-smart-contracts/build/artifacts/UniversalProfile.json';
-import KeyManager from '@lukso/universalprofile-smart-contracts/build/artifacts/KeyManager.json';
+import UniversalProfile from '@lukso/universalprofile-smart-contracts/artifacts/UniversalProfile.json';
+import KeyManager from '@lukso/universalprofile-smart-contracts/artifacts/LSP6KeyManager.json';
 
 export const executeTransaction = async (web3: Web3, erc725Address: string) => {
   const myUP = new web3.eth.Contract(

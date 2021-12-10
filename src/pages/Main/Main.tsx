@@ -7,6 +7,7 @@ import { getAccount, getAccountBalance } from '../../services/web3';
 import { fetchErc725Data } from '../../services/erc725';
 import { deployUp, deployUpReactive } from '../../services/lspFactory';
 import { executeTransaction } from '../../services/blockchain';
+import { Link } from 'react-router-dom';
 
 enum STEP {
   CREATE_ACCOUNT,
@@ -81,6 +82,7 @@ const Main: React.FC = () => {
         >
           GitHub
         </a>
+        -<Link to="/tx">Transactions</Link>
       </p>
       <h2>1. {accountAddress && '✅'} 🔑 Create/Get account</h2>
       {accountAddress ? (
