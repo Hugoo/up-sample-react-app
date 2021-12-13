@@ -2,12 +2,15 @@ import WalletConnectProvider from '@walletconnect/web3-provider';
 import React, { useState } from 'react';
 import Web3 from 'web3';
 import Web3Modal from 'web3modal';
-import { setDataTransaction } from '../../services/transactions';
+import { web3Constants } from '../../constants';
+import { defaultFunctions } from '../../contracts/abi';
 
 const Transaction: React.FC = () => {
   const [web3, setWeb3] = useState<Web3>();
   const [account, setAccount] = useState<string | undefined>();
   const [payload, setPayload] = useState<string>();
+
+  const lyxAmount = '0.1';
 
   const providerOptions = {
     walletconnect: {
@@ -35,7 +38,31 @@ const Transaction: React.FC = () => {
     const provider = await web3Modal.connect();
 
     const web3 = new Web3(provider);
+    window.web3 = provider;
+
+    console.log('provider', provider);
+
     setWeb3(web3);
+
+    await window.ethereum.request({
+      method: 'wallet_addEthereumChain',
+      params: [
+        {
+          chainId: '0x16',
+          chainName: 'LUKSO L14',
+          nativeCurrency: {
+            name: 'LUKSO',
+            symbol: 'LYX',
+            decimals: 18,
+          },
+          rpcUrls: ['https://rpc.l14.lukso.network'],
+          blockExplorerUrls: ['https://blockscout.com/lukso/l14'],
+        },
+      ],
+    });
+
+    // ethereum.request({method: 'eth_accounts'}) -> good one
+    // ethereum.request({method: 'eth_requestAccounts'}) -> standard
 
     const accounts = await web3.eth.getAccounts();
     setAccount(accounts[0]);
@@ -47,6 +74,11 @@ const Transaction: React.FC = () => {
     provider.on('accountsChanged', (accounts: string[]) => {
       console.log(accounts);
       setAccount(accounts[0]);
+    });
+
+    // Subscribe to chainId change
+    provider.on('chainChanged', (chainId: number) => {
+      console.log(chainId);
     });
   };
 
@@ -62,12 +94,14 @@ const Transaction: React.FC = () => {
       return;
     }
 
-    const weiValue = web3.utils.toWei('1', 'ether');
+    const weiValue = web3.utils.toWei(lyxAmount, 'ether');
     return await web3.eth
       .sendTransaction({
         from: account,
         to: '0x23a86EF830708204646abFE631cA1a60d04c4FbE',
         value: weiValue,
+        gasPrice: web3Constants.gasPrice,
+        chainId: web3Constants.chainId,
       })
       .once('sending', (payload) => {
         console.log(payload);
@@ -76,12 +110,36 @@ const Transaction: React.FC = () => {
   };
 
   const setData = async () => {
-    if (!web3 || !account) {
+    if (!web3) {
       alert('not connected');
       return;
     }
 
-    await setDataTransaction(web3, account);
+    let erc725yContract = new web3.eth.Contract([defaultFunctions.setData]);
+
+    const data = erc725yContract.methods
+      .setData(
+        ['0x5ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5'],
+        [
+          '0x6f357c6a70546a2accab18748420b63c63b5af4cf710848ae83afc0c51dd8ad17fb5e8b3697066733a2f2f516d65637247656a555156587057347a53393438704e76636e51724a314b69416f4d36626466725663575a736e35',
+        ],
+      )
+      .encodeABI();
+
+    return web3.eth
+      .sendTransaction({
+        from: account,
+        to: '0x23a86EF830708204646abFE631cA1a60d04c4FbE',
+        data,
+      })
+      .once('sending', (payload) => {
+        console.log(JSON.stringify(payload, null, 2));
+        setPayload(JSON.stringify(payload, null, 2));
+      });
+  };
+
+  const setDataPermissions = async () => {
+    // TODO
   };
 
   return (
@@ -91,10 +149,13 @@ const Transaction: React.FC = () => {
       <p>
         <button onClick={account ? disconnectWallet : connectWallet}>
           {account ? `Connected: ${account}` : 'Connect'}
-        </button>
+        </button>{' '}
+        - Note: the extension SHOULD inject the UP SC address - not an EOA
+        address.
       </p>
-      <button onClick={sendLyx}>Send LYX</button>
-      <button onClick={setData}>Set data</button>
+      <button onClick={sendLyx}>Send {lyxAmount} LYX</button>{' '}
+      <button onClick={setData}>Set data</button>{' '}
+      <button onClick={setDataPermissions}>Set data [permissions]</button>
       <pre>{payload}</pre>
     </div>
   );
