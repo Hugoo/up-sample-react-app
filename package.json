@@ -2,7 +2,7 @@
   "name": "up-sample-react-app",
   "version": "0.1.0",
   "private": false,
-  "homepage": "up-sample-react-app",
+  "homepage": "https://hugoo.github.io/up-sample-react-app/",
   "dependencies": {
     "@erc725/erc725.js": "^0.7.0",
     "@lukso/lsp-factory.js": "^1.1.3",
