@@ -81,8 +81,8 @@ const Main: React.FC = () => {
           href="https://github.com/Hugoo/up-sample-react-app"
         >
           GitHub
-        </a>
-        -<Link to="/tx">Transactions</Link>
+        </a>{' '}
+        - <Link to="/tx">Transactions</Link>
       </p>
       <h2>1. {accountAddress && '✅'} 🔑 Create/Get account</h2>
       {accountAddress ? (

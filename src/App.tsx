@@ -10,10 +10,9 @@ import Transaction from './pages/Main/Transactions';
 
 const App: React.FC = () => {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="up-sample-react-app">
       <Routes>
         <Route path="/tx" element={<Transaction />} />
-
         <Route
           path="/"
           element={
