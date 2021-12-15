@@ -44,22 +44,27 @@ const Transaction: React.FC = () => {
 
     setWeb3(web3);
 
-    await window.ethereum.request({
-      method: 'wallet_addEthereumChain',
-      params: [
-        {
-          chainId: '0x16',
-          chainName: 'LUKSO L14',
-          nativeCurrency: {
-            name: 'LUKSO',
-            symbol: 'LYX',
-            decimals: 18,
+    try {
+      // This will only work for MetaMask atm
+      await window.ethereum.request({
+        method: 'wallet_addEthereumChain',
+        params: [
+          {
+            chainId: '0x16',
+            chainName: 'LUKSO L14',
+            nativeCurrency: {
+              name: 'LUKSO',
+              symbol: 'LYX',
+              decimals: 18,
+            },
+            rpcUrls: ['https://rpc.l14.lukso.network'],
+            blockExplorerUrls: ['https://blockscout.com/lukso/l14'],
           },
-          rpcUrls: ['https://rpc.l14.lukso.network'],
-          blockExplorerUrls: ['https://blockscout.com/lukso/l14'],
-        },
-      ],
-    });
+        ],
+      });
+    } catch (err) {
+      console.error('Could not set chain in the extension');
+    }
 
     // ethereum.request({method: 'eth_accounts'}) -> good one
     // ethereum.request({method: 'eth_requestAccounts'}) -> standard
@@ -101,7 +106,7 @@ const Transaction: React.FC = () => {
         to: '0x23a86EF830708204646abFE631cA1a60d04c4FbE',
         value: weiValue,
         gasPrice: web3Constants.gasPrice,
-        chainId: web3Constants.chainId,
+        // chainId: web3Constants.chainId,
       })
       .once('sending', (payload) => {
         console.log(payload);
