@@ -149,7 +149,7 @@ const Main: React.FC = () => {
           <p>
             With{' '}
             <a
-              href="https://docs.lukso.tech/tools/lsp-factoryjs/getting-started"
+              href="https://docs.lukso.tech/tools/lsp-factoryjs/introduction/getting-started"
               target="_blank"
               rel="noreferrer"
             >
