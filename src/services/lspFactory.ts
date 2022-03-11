@@ -21,7 +21,7 @@ export const deployUp = async (web3: Web3, controllerAddress: string) => {
 
   console.log('🚀 Deploying LSP3UniversalProfile contract...');
   const deployedContracts = await lspFactory.LSP3UniversalProfile.deploy({
-    controllingAccounts: [controllerAddress], // our key will be controlling our UP in the beginning
+    controllerAddresses: [controllerAddress], // our key will be controlling our UP in the beginning
     lsp3Profile: {
       name: 'My Universal Profile',
       description: 'My Cool Universal Profile',
@@ -40,6 +40,10 @@ export const deployUp = async (web3: Web3, controllerAddress: string) => {
   console.log(`✅ Deployment and configuration successful`);
   console.log('Contracts:', deployedContracts);
 
+  // FIXME: the lib types are not working correctly
+  // Property 'ERC725Account' does not exist on type 'Observable<DeploymentEventContract | DeploymentEventTransaction>'
+
+  // @ts-ignore
   return deployedContracts.ERC725Account?.address;
 };
 
@@ -60,21 +64,27 @@ export const deployUpReactive = async (
   console.log('🚀 [reactive] Deploying LSP3UniversalProfile contract...');
 
   let erc725ContractAddress: string;
-  lspFactory.LSP3UniversalProfile.deployReactive({
-    controllingAccounts: [controllerAddress],
-    lsp3Profile: {
-      name: 'My Universal Profile',
-      description: 'My Cool Universal Profile',
-      backgroundImage: [],
-      tags: ['Public Profile'],
-      links: [
-        {
-          title: 'My Website',
-          url: 'http://my-website.com',
-        },
-      ],
+  lspFactory.LSP3UniversalProfile.deploy(
+    {
+      controllerAddresses: [controllerAddress],
+      lsp3Profile: {
+        name: 'My Universal Profile',
+        description: 'My Cool Universal Profile',
+        backgroundImage: [],
+        tags: ['Public Profile'],
+        links: [
+          {
+            title: 'My Website',
+            url: 'http://my-website.com',
+          },
+        ],
+      },
     },
-  }).subscribe({
+    {
+      deployReactive: true,
+    },
+    //@ts-ignore
+  ).subscribe({
     next: (deploymentEvent: DeploymentEvent) => {
       console.log(deploymentEvent);
 
